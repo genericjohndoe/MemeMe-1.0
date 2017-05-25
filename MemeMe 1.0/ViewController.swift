@@ -117,32 +117,34 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     
-//    @IBAction func save(_ sender: Any) {
-//        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imageView.image!, meme: generateMemedImage())
-//    }
-//    
-//    func generateMemedImage() -> UIImage {
-//        topToolBar.isHidden = true
-//        bottomToolBar.isHidden = true
-//        
-//        // Render view to an image
-//        UIGraphicsBeginImageContext(self.view.frame.size)
-//        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
-//        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-//        UIGraphicsEndImageContext()
-//        
-//        topToolBar.isHidden = false
-//        bottomToolBar.isHidden = false
-//        
-//        return memedImage
-//    }
-//    
-//    
-//    @IBAction func share(_ sender: Any){
-//        let image = UIImage()
-//        let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-//        self.present(controller, animated: true, completion: nil)
-//    }
+    @IBAction func save(_ sender: Any) {
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imageView.image!, meme: generateMemedImage())
+        print("meme saved")
+        
+    }
+    
+    func generateMemedImage() -> UIImage {
+        topToolBar.isHidden = true
+        bottomToolBar.isHidden = true
+        
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        topToolBar.isHidden = false
+        bottomToolBar.isHidden = false
+        
+        return memedImage
+    }
+    
+    
+    @IBAction func share(_ sender: Any){
+        let image = UIImage()
+        let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        self.present(controller, animated: true, completion: nil)
+    }
     
 }
 
