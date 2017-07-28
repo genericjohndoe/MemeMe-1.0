@@ -96,6 +96,7 @@
                         <outlet property="bottomToolBar" destination="gFH-Z8-mG0" id="Akp-hs-VL8"/>
                         <outlet property="cameraButton" destination="wcz-Bv-EhT" id="pOw-xt-JUp"/>
                         <outlet property="imageView" destination="2Z3-Bq-j0f" id="2XX-np-wa1"/>
+                        <outlet property="shareButton" destination="o0a-Ci-JPE" id="EEr-X5-clc"/>
                         <outlet property="topTextField" destination="dPU-oZ-cgQ" id="ipu-yQ-M29"/>
                         <outlet property="topToolBar" destination="Or2-4k-1ki" id="KbR-mL-hQx"/>
                     </connections>

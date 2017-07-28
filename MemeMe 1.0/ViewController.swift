@@ -18,6 +18,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSStrokeWidthAttributeName: -1.0]
 
+    @IBOutlet weak var shareButton: UIBarButtonItem!
  
     @IBOutlet weak var bottomToolBar: UIToolbar!
     @IBOutlet weak var topToolBar: UIToolbar!
@@ -30,6 +31,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        shareButton.isEnabled = false
         configureTextField(topTextField, defaultString: "TOP")
         configureTextField(bottomTextField, defaultString: "BOTTOM")
     }
@@ -64,6 +66,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.image = image
             imageView.contentMode = .scaleAspectFit
+            shareButton.isEnabled = true
         }
         
     }
@@ -150,7 +153,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 self.save()
             }
         }
-        self.present(controller, animated: true, completion: nil)
+        present(controller, animated: true, completion: nil)
     }
     
 }
