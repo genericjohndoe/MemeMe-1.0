@@ -31,17 +31,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        topTextField.textAlignment = NSTextAlignment.center
-        topTextField.delegate = self.memeTextDelegate
-        topTextField.borderStyle = UITextBorderStyle.none
-        topTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.text = "TOP"
-        
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.borderStyle = UITextBorderStyle.none
-        bottomTextField.delegate = self.memeTextDelegate
-        bottomTextField.textAlignment = NSTextAlignment.center
-        bottomTextField.text = "BOTTOM"
+        configureTextField(topTextField, defaultString: "TOP")
+        configureTextField(bottomTextField, defaultString: "BOTTOM")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,11 +44,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
+    
+    func configureTextField(_ textField: UITextField, defaultString: String){
+        textField.textAlignment = NSTextAlignment.center
+        textField.delegate = self.memeTextDelegate
+        textField.borderStyle = UITextBorderStyle.none
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.text = defaultString
+    }
 
     
     @IBAction func pickImage(_ sender: AnyObject) {
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
+        let pickerController = createImagePicker()
         present(pickerController, animated: true, completion: nil)
 
     }
@@ -67,6 +65,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.image = image
+            imageView.contentMode = .scaleAspectFit
         }
     }
     
@@ -75,10 +74,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func takePicture(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
+        let imagePicker = createImagePicker()
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func createImagePicker() -> UIImagePickerController{
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        return imagePicker
     }
     
     func keyboardWillShow(_ notification:Notification) {
@@ -117,10 +121,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     
-    @IBAction func save(_ sender: Any) {
+    @IBAction func save(_ sender: Any){
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imageView.image!, meme: generateMemedImage())
-        print("meme saved")
-        
     }
     
     func generateMemedImage() -> UIImage {
@@ -141,7 +143,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     @IBAction func share(_ sender: Any){
-        let image = UIImage()
+        let image = generateMemedImage()
         let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         self.present(controller, animated: true, completion: nil)
     }
