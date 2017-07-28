@@ -61,11 +61,6 @@
                                             <action selector="cancelMeme:" destination="BYZ-38-t0r" id="v0c-Fn-ieS"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem systemItem="save" id="g4b-FO-KmO">
-                                        <connections>
-                                            <action selector="save:" destination="BYZ-38-t0r" id="kj5-yk-u3d"/>
-                                        </connections>
-                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="hxV-MS-RKM" userLabel="Bottom Text Field">

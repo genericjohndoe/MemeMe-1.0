@@ -18,8 +18,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSStrokeWidthAttributeName: -1.0]
 
-    
-    
+ 
     @IBOutlet weak var bottomToolBar: UIToolbar!
     @IBOutlet weak var topToolBar: UIToolbar!
     @IBOutlet weak var imageView: UIImageView!
@@ -37,6 +36,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewWillAppear(_ animated: Bool) {
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        
         subscribeToKeyboardNotifications()
     }
     
@@ -55,9 +55,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     
     @IBAction func pickImage(_ sender: AnyObject) {
-        let pickerController = createImagePicker()
-        present(pickerController, animated: true, completion: nil)
-
+        createImagePicker(false)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -67,6 +65,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             imageView.image = image
             imageView.contentMode = .scaleAspectFit
         }
+        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -74,15 +73,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func takePicture(_ sender: Any) {
-        let imagePicker = createImagePicker()
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        createImagePicker(true)
     }
     
-    func createImagePicker() -> UIImagePickerController{
+    func createImagePicker(_ fromCamera: Bool){
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        return imagePicker
+        if (fromCamera){
+            imagePicker.sourceType = .camera
+        }
+        present(imagePicker, animated: true, completion: nil)
     }
     
     func keyboardWillShow(_ notification:Notification) {
@@ -121,7 +121,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     
-    @IBAction func save(_ sender: Any){
+    func save() -> Void{
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imageView.image!, meme: generateMemedImage())
     }
     
@@ -145,6 +145,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func share(_ sender: Any){
         let image = generateMemedImage()
         let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        controller.completionWithItemsHandler = { (activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) -> Void in
+            if completed == true {
+                self.save()
+            }
+        }
         self.present(controller, animated: true, completion: nil)
     }
     
