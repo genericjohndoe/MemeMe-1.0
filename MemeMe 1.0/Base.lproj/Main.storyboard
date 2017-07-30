@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,14 +19,14 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Z3-Bq-j0f">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="64" width="736" height="306"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFH-Z8-mG0" userLabel="BottomToolbar">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="370" width="736" height="44"/>
                                 <items>
                                     <barButtonItem title="Album" id="iXK-sf-Gfl" userLabel="AlbumItem">
                                         <connections>
@@ -40,16 +41,16 @@
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MemeView" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="dPU-oZ-cgQ" userLabel="Top Text Field">
-                                <rect key="frame" x="175" y="112" width="25" height="30"/>
+                                <rect key="frame" x="20" y="88" width="696" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" spellCheckingType="yes"/>
                             </textField>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E5a-74-OBC">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="736" height="44"/>
                             </navigationBar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Or2-4k-1ki" userLabel="TopToolbar">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="736" height="44"/>
                                 <items>
                                     <barButtonItem systemItem="action" id="o0a-Ci-JPE">
                                         <connections>
@@ -64,7 +65,7 @@
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="hxV-MS-RKM" userLabel="Bottom Text Field">
-                                <rect key="frame" x="175" y="510" width="25" height="30"/>
+                                <rect key="frame" x="20" y="316" width="696" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
@@ -77,18 +78,22 @@
                             <constraint firstItem="2Z3-Bq-j0f" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4DZ-EC-rCH"/>
                             <constraint firstItem="E5a-74-OBC" firstAttribute="top" secondItem="Or2-4k-1ki" secondAttribute="top" id="Bn1-vA-5ZL"/>
                             <constraint firstItem="gFH-Z8-mG0" firstAttribute="trailing" secondItem="2Z3-Bq-j0f" secondAttribute="trailing" id="Cy7-AQ-bJa"/>
+                            <constraint firstItem="dPU-oZ-cgQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="DuY-pR-cZ8"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gFH-Z8-mG0" secondAttribute="bottom" id="E4a-Xd-fnL"/>
                             <constraint firstItem="gFH-Z8-mG0" firstAttribute="top" secondItem="2Z3-Bq-j0f" secondAttribute="bottom" id="EnR-sd-vm0"/>
                             <constraint firstItem="Or2-4k-1ki" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="FpE-wv-6YA"/>
                             <constraint firstItem="gFH-Z8-mG0" firstAttribute="trailing" secondItem="E5a-74-OBC" secondAttribute="trailing" id="N1K-r1-XSB"/>
                             <constraint firstItem="Or2-4k-1ki" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="RbZ-TL-DxB"/>
+                            <constraint firstItem="dPU-oZ-cgQ" firstAttribute="top" secondItem="Or2-4k-1ki" secondAttribute="bottom" constant="24" id="Tma-YY-7DO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hxV-MS-RKM" secondAttribute="trailing" id="aSD-OW-cxi"/>
                             <constraint firstAttribute="trailing" secondItem="gFH-Z8-mG0" secondAttribute="trailing" id="agO-K2-29P"/>
                             <constraint firstItem="dPU-oZ-cgQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bod-hR-xew"/>
-                            <constraint firstItem="gFH-Z8-mG0" firstAttribute="top" secondItem="hxV-MS-RKM" secondAttribute="bottom" constant="83" id="iJ2-IW-MPF"/>
-                            <constraint firstItem="dPU-oZ-cgQ" firstAttribute="top" secondItem="Or2-4k-1ki" secondAttribute="bottom" constant="48" id="itg-KX-rOv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dPU-oZ-cgQ" secondAttribute="trailing" id="cc1-U8-WGz"/>
+                            <constraint firstItem="hxV-MS-RKM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="fqj-qb-NtW"/>
                             <constraint firstItem="gFH-Z8-mG0" firstAttribute="leading" secondItem="E5a-74-OBC" secondAttribute="leading" id="kZ1-oo-fI9"/>
                             <constraint firstItem="gFH-Z8-mG0" firstAttribute="trailing" secondItem="Or2-4k-1ki" secondAttribute="trailing" id="qLT-zV-Yv9"/>
                             <constraint firstItem="gFH-Z8-mG0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wjH-mF-fmC"/>
+                            <constraint firstItem="gFH-Z8-mG0" firstAttribute="top" secondItem="hxV-MS-RKM" secondAttribute="bottom" constant="24" id="yUJ-Xe-7zN"/>
                         </constraints>
                     </view>
                     <connections>

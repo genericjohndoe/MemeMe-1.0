@@ -37,8 +37,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        
         subscribeToKeyboardNotifications()
     }
     
@@ -48,13 +48,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func configureTextField(_ textField: UITextField, defaultString: String){
-        textField.textAlignment = NSTextAlignment.center
+        textField.text = defaultString
         textField.delegate = self.memeTextDelegate
         textField.borderStyle = UITextBorderStyle.none
         textField.defaultTextAttributes = memeTextAttributes
-        textField.text = defaultString
+        textField.textAlignment = NSTextAlignment.center
     }
-
     
     @IBAction func pickImage(_ sender: AnyObject) {
         createImagePicker(false)
@@ -90,7 +89,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func keyboardWillShow(_ notification:Notification) {
         if (bottomTextField.isEditing) {
-        view.frame.origin.y -= getKeyboardHeight(notification)
+        view.frame.origin.y = -getKeyboardHeight(notification)
         }
     }
     
@@ -103,7 +102,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func keyboardWillHide(_ notification:Notification) {
         if (bottomTextField.isEditing) {
-        view.frame.origin.y += getKeyboardHeight(notification)
+        view.frame.origin.y = 0
         }
     }
     
@@ -123,14 +122,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextField.text = "BOTTOM"
     }
     
-    
     func save() -> Void{
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imageView.image!, meme: generateMemedImage())
+        func getText(_ textfield: UITextField) -> String{
+            if let string = textfield.text?.capitalized {
+                return string
+            } else{
+                return ""
+            }
+        }
+        let meme = Meme(topText: getText(topTextField), bottomText: getText(bottomTextField), image: imageView.image!, meme: generateMemedImage())
+    }
+    
+    func setToolbarEnabled(_ isShown: Bool){
+        topToolBar.isHidden = !isShown
+        bottomToolBar.isHidden = !isShown
     }
     
     func generateMemedImage() -> UIImage {
-        topToolBar.isHidden = true
-        bottomToolBar.isHidden = true
+        setToolbarEnabled(false)
         
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -138,8 +147,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        topToolBar.isHidden = false
-        bottomToolBar.isHidden = false
+        setToolbarEnabled(true)
         
         return memedImage
     }
